@@ -56,8 +56,8 @@ class SpatialTracker:
         mesh_points=np.array([np.multiply([(0.5 - p.x) * 2, (0.5 - p.y) * 2, 1], [self.htan, self.vtan, 1]).astype(np.float32) for p in mediapipe_coordinates.landmark]) # Convert the coordinates into vectors with unit depth.
         
         # select the 3 facial points
-        righteye = mesh_points[33]
-        lefteye = mesh_points[263]
+        righteye = mesh_points[446]
+        lefteye = mesh_points[226]
         nose = mesh_points[19]
         # calculate the length of the vectors
         rel = np.dot(righteye, righteye) ** 0.5
