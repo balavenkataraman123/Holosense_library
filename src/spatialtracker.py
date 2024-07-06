@@ -7,6 +7,7 @@ def eval_func(a, consts): # Helper functions for generic rangefinder. Explained 
     bp = func_b(cos_23, dist_23, a)
     cp = func_b(cos_13, dist_13, a)
     return [(bp**2 + cp**2) - (2*cp*bp*cos_12) - (dist_12)**2, bp, cp]
+
 def func_b(cosine, distance, a):
     return ((2*a*cosine) + abs((2*a*cosine) ** 2 + 4*(distance **2 - a**2))**0.5) / 2
 
@@ -23,7 +24,7 @@ def nr_approx_fast(value, epsilon, steps, consts): # newton raphson algorithm
         return nr_approx_fast(nextvalue, epsilon, steps-1, consts)
 
 class SpatialTracker:
-    previous_position = 12 #The program performs the newton-raphson method from the previous predicted distance.
+    previous_position = 12 # The program performs the newton-raphson method from the previous predicted distance.
     # The starting value can be anything, it is just set to 12 since I usually sit 12 inches away from my screen.
     
     # These default values are for an average person and average laptop webcam in case the user doesn't want to manually calibrate.   
@@ -41,14 +42,10 @@ class SpatialTracker:
 
     def __init__(self, **kwargs):
         
-        try: self.fov = kwargs["fov"]
-        except: pass
-        try: self.aspect = kwargs["aspectratio"]
-        except:pass
-        try: self.eedist = kwargs["eyedistance"]; self.endist = kwargs["eyenosedistance"]
-        except: pass
-        try: self.single_output = kwargs["single_output"]
-        except: pass
+        if "fov" in kwargs: self.fov = kwargs["fov"]
+        if "aspectratio" in kwargs: self.aspect = kwargs["aspectratio"]
+        if "eyenosedistance" in kwargs: self.eedist = kwargs["eyedistance"]; self.endist = kwargs["eyenosedistance"]
+        if "single_output" in kwargs: self.single_output = kwargs["single_output"]
 
         # tangent of horizontal and vertical FOV for converting image plane coordinates into vectors in irl space.
         self.htan = math.tan(self.fov * math.pi / 360) * self.aspect/((self.aspect ** 2 + 1) ** 0.5) # divided by 360 instead of 180 to  calculate half the angle.
