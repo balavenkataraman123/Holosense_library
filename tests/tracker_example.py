@@ -3,11 +3,11 @@ import numpy as np
 import mediapipe as mp
 from holosense import SpatialTracker
 
-cap = cv2.VideoCapture("/dev/video4")
-cap.set(cv2.CAP_PROP_FPS, 60)
+cap = cv2.VideoCapture("/dev/video0")
+cap.set(cv2.CAP_PROP_FPS, 30)
 cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'MJPG'))
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 mp_face_mesh = mp.solutions.face_mesh
 face_mesh = mp_face_mesh.FaceMesh(
